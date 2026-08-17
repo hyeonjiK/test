@@ -7,7 +7,11 @@ authors = [
     { name = "heonjiK", email = "hanzzi@g.skku.edu" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "feedparser>=6.0.14",
+    "requests>=2.34.2",
+]
 
 [project.scripts]
 test2 = "test2:main"
