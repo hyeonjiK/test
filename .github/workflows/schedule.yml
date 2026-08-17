@@ -13,19 +13,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@v3
         with:
+          enable-cache: true
           python-version: '3.12'
 
-      - name: Install uv
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-
       - name: Sync dependencies
-        run: ~/.cargo/bin/uv sync
+        run: uv sync
 
       - name: Run Scraper
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: ~/.cargo/bin/uv run src/test2/scraper.py
+        run: uv run src/test2/scraper.py
